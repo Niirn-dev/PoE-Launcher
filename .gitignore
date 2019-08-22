@@ -5,3 +5,6 @@
 /.vs/PoE-Launcher/v16
 /PoE-Launcher/obj/Debug
 /PoE-Launcher/bin/Debug
+/PoE-Launcher.Core/bin/Debug
+/PoE-Launcher.Core/obj/Debug
+/packages

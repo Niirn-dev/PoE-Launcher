@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -17,7 +16,7 @@ namespace PoE_Launcher
         /// <param name="page">Page to animate</param>
         /// <param name="duration">Animation duration in seconds</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeInFromRight(this Page page, float duration)
+        public static async Task SlideAndFadeInFromRightAsync(this Page page, float duration)
         {
             // Create the storyboard
             var sb = new Storyboard();
@@ -44,7 +43,7 @@ namespace PoE_Launcher
         /// <param name="page">Page to animate</param>
         /// <param name="duration">Animation duration in seconds</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeOutToTheLeft(this Page page, float duration)
+        public static async Task SlideAndFadeOutToTheLeftAsync(this Page page, float duration)
         {
             // Create the storyboard
             var sb = new Storyboard();

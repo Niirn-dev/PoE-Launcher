@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoE_Launcher.Core;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;

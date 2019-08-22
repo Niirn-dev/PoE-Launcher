@@ -75,8 +75,6 @@
     <Compile Include="Controls\Directory\DirectoryStructureControl.xaml.cs">
       <DependentUpon>DirectoryStructureControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\ApplicationPage.cs" />
-    <Compile Include="Expressions\ExpressionHelper.cs" />
     <Compile Include="Controls\Macros\MacroListControl.xaml.cs">
       <DependentUpon>MacroListControl.xaml</DependentUpon>
     </Compile>
@@ -93,20 +91,9 @@
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
     <Compile Include="ValueConverters\IsBusyToBackgroundConverter.cs" />
-    <Compile Include="ViewModelElements\Base\RelayParameterizedCommand.cs" />
-    <Compile Include="ViewModelElements\Macros\Design\MacroListDesignModel.cs" />
-    <Compile Include="ViewModelElements\Macros\Design\MacroListItemDesignModel.cs" />
-    <Compile Include="ViewModelElements\Macros\MacroListViewModel.cs" />
-    <Compile Include="ViewModelElements\Macros\MacroListItemViewModel.cs" />
-    <Compile Include="ViewModelElements\Pages\FileExplorerPageViewModel.cs" />
-    <Compile Include="ViewModelElements\Pages\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
-    <Compile Include="ViewModelElements\Window\WindowViewModel.cs" />
     <Page Include="Controls\Directory\DirectoryStructureControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FileExplorer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,17 +121,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModelElements\Directory\Data\DirectoryItem.cs" />
-    <Compile Include="ViewModelElements\Directory\Data\DirectoryItemType.cs" />
-    <Compile Include="ViewModelElements\Directory\DirectoryStructure.cs" />
     <Compile Include="ValueConverters\ItemTypeToImageConverter.cs" />
-    <Compile Include="ViewModelElements\Base\BaseViewModel.cs" />
-    <Compile Include="ViewModelElements\Directory\DirectoryItemViewModel.cs" />
-    <Compile Include="ViewModelElements\Base\RelayCommand.cs" />
-    <Compile Include="ViewModelElements\Directory\DirectoryStructureViewModel.cs" />
-    <Compile Include="FileExplorer.xaml.cs">
-      <DependentUpon>FileExplorer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -215,7 +192,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PoE-Launcher.Core\PoE-Launcher.Core.csproj">
+      <Project>{918acafd-b9ca-4f71-8b3c-143d16e684eb}</Project>
+      <Name>PoE-Launcher.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Directory\drive.png" />
     <Resource Include="Images\Directory\file.png" />

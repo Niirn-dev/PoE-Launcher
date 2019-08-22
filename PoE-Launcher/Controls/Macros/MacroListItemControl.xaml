@@ -4,11 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PoE_Launcher"
+             xmlns:core="clr-namespace:PoE_Launcher.Core;assembly=PoE-Launcher.Core"
              mc:Ignorable="d" 
              Height="70"
              d:DesignHeight="70" d:DesignWidth="700">
     
-    <Grid d:DataContext="{x:Static local:MacroListItemDesignModel.Instance}" Background="{StaticResource BackgroundDarkBrush}">
+    <Grid d:DataContext="{x:Static core:MacroListItemDesignModel.Instance}" Background="{StaticResource BackgroundDarkBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />

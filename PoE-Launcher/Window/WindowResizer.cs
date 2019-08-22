@@ -244,8 +244,7 @@ namespace PoE_Launcher
         private void WmGetMinMaxInfo(System.IntPtr hwnd, System.IntPtr lParam)
         {
             // Get the point position to determine what screen we are on
-            POINT lMousePosition;
-            GetCursorPos(out lMousePosition);
+            GetCursorPos(out var lMousePosition);
 
             // Get the primary monitor at cursor position 0,0
             var lPrimaryScreen = MonitorFromPoint(new POINT(0, 0), MonitorOptions.MONITOR_DEFAULTTOPRIMARY);
@@ -271,28 +270,28 @@ namespace PoE_Launcher
             // If it is the primary screen, use the rcWork variable
             if (lPrimaryScreen.Equals(lCurrentScreen) == true)
             {
-                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcWork.Left;
-                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcWork.Top;
-                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcWork.Right - lPrimaryScreenInfo.rcWork.Left;
-                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcWork.Bottom - lPrimaryScreenInfo.rcWork.Top;
+                lMmi.mPtMaxPosition.mX = lPrimaryScreenInfo.mRcWork.mLeft;
+                lMmi.mPtMaxPosition.mY = lPrimaryScreenInfo.mRcWork.mTop;
+                lMmi.mPtMaxSize.mX = lPrimaryScreenInfo.mRcWork.mRight - lPrimaryScreenInfo.mRcWork.mLeft;
+                lMmi.mPtMaxSize.mY = lPrimaryScreenInfo.mRcWork.mBottom - lPrimaryScreenInfo.mRcWork.mTop;
             }
             // Otherwise it's the rcMonitor values
             else
             {
-                lMmi.ptMaxPosition.X = lPrimaryScreenInfo.rcMonitor.Left;
-                lMmi.ptMaxPosition.Y = lPrimaryScreenInfo.rcMonitor.Top;
-                lMmi.ptMaxSize.X = lPrimaryScreenInfo.rcMonitor.Right - lPrimaryScreenInfo.rcMonitor.Left;
-                lMmi.ptMaxSize.Y = lPrimaryScreenInfo.rcMonitor.Bottom - lPrimaryScreenInfo.rcMonitor.Top;
+                lMmi.mPtMaxPosition.mX = lPrimaryScreenInfo.mRcMonitor.mLeft;
+                lMmi.mPtMaxPosition.mY = lPrimaryScreenInfo.mRcMonitor.mTop;
+                lMmi.mPtMaxSize.mX = lPrimaryScreenInfo.mRcMonitor.mRight - lPrimaryScreenInfo.mRcMonitor.mLeft;
+                lMmi.mPtMaxSize.mY = lPrimaryScreenInfo.mRcMonitor.mBottom - lPrimaryScreenInfo.mRcMonitor.mTop;
             }
 
             // Set min size
             var minSize = mTransformToDevice.Transform(new Point(mWindow.MinWidth, mWindow.MinHeight));
 
-            lMmi.ptMinTrackSize.X = (int)minSize.X;
-            lMmi.ptMinTrackSize.Y = (int)minSize.Y;
+            lMmi.mPtMinTrackSize.mX = (int)minSize.X;
+            lMmi.mPtMinTrackSize.mY = (int)minSize.Y;
 
             // Store new size
-            mScreenSize = new Rect(lMmi.ptMaxPosition.X, lMmi.ptMaxPosition.Y, lMmi.ptMaxSize.X, lMmi.ptMaxSize.Y);
+            mScreenSize = new Rect(lMmi.mPtMaxPosition.mX, lMmi.mPtMaxPosition.mY, lMmi.mPtMaxSize.mX, lMmi.mPtMaxSize.mY);
 
             // Now we have the max size, allow the host to tweak as needed
             Marshal.StructureToPtr(lMmi, lParam, true);
@@ -312,35 +311,35 @@ namespace PoE_Launcher
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public class MONITORINFO
     {
-        public int cbSize = Marshal.SizeOf(typeof(MONITORINFO));
-        public Rectangle rcMonitor = new Rectangle();
-        public Rectangle rcWork = new Rectangle();
-        public int dwFlags = 0;
+        public int mCbSize = Marshal.SizeOf(typeof(MONITORINFO));
+        public Rectangle mRcMonitor = new Rectangle();
+        public Rectangle mRcWork = new Rectangle();
+        public int mDwFlags = 0;
     }
 
 
     [StructLayout(LayoutKind.Sequential)]
     public struct Rectangle
     {
-        public int Left, Top, Right, Bottom;
+        public int mLeft, mTop, mRight, mBottom;
 
         public Rectangle(int left, int top, int right, int bottom)
         {
-            this.Left = left;
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
+            mLeft = left;
+            mTop = top;
+            mRight = right;
+            mBottom = bottom;
         }
     }
 
     [StructLayout(LayoutKind.Sequential)]
     public struct MINMAXINFO
     {
-        public POINT ptReserved;
-        public POINT ptMaxSize;
-        public POINT ptMaxPosition;
-        public POINT ptMinTrackSize;
-        public POINT ptMaxTrackSize;
+        public POINT mPtReserved;
+        public POINT mPtMaxSize;
+        public POINT mPtMaxPosition;
+        public POINT mPtMinTrackSize;
+        public POINT mPtMaxTrackSize;
     };
 
     [StructLayout(LayoutKind.Sequential)]
@@ -349,19 +348,19 @@ namespace PoE_Launcher
         /// <summary>
         /// x coordinate of point.
         /// </summary>
-        public int X;
+        public int mX;
         /// <summary>
         /// y coordinate of point.
         /// </summary>
-        public int Y;
+        public int mY;
 
         /// <summary>
         /// Construct a point of coordinates (x,y).
         /// </summary>
         public POINT(int x, int y)
         {
-            this.X = x;
-            this.Y = y;
+            mX = x;
+            mY = y;
         }
     }
 

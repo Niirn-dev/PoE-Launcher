@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoE_Launcher.Core;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -9,6 +10,8 @@ namespace PoE_Launcher
     /// </summary>
     public class ApplicationPageValueConverter : BaseValueConverter<ApplicationPageValueConverter>
     {
+        public static ApplicationPageValueConverter Instance = new ApplicationPageValueConverter();
+
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // Find the appropriate page

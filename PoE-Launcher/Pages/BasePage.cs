@@ -1,6 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Windows;
+﻿using PoE_Launcher.Core;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace PoE_Launcher
 {
@@ -41,10 +42,8 @@ namespace PoE_Launcher
         /// </summary>
         public VM ViewModel
         {
-            get
-            {
-                return mViewModel;
-            }
+            get => mViewModel;
+
             set
             {
                 // If nothing has changed, return
@@ -55,7 +54,7 @@ namespace PoE_Launcher
                 mViewModel = value;
 
                 // Update data context for the page
-                this.DataContext = mViewModel;
+                DataContext = mViewModel;
             }
         }
 
@@ -68,17 +67,17 @@ namespace PoE_Launcher
         /// </summary>
         public BasePage()
         {
-            this.ViewModel = new VM();
+            ViewModel = new VM();
 
             // If we are animating...
-            if (this.PageLoadAnimation != PageAnimation.None)
+            if (PageLoadAnimation != PageAnimation.None)
                 // Hide to begin with
-                this.Visibility = Visibility.Collapsed;
+                Visibility = Visibility.Collapsed;
 
             // Listen out for the page loading
-            this.Loaded += BasePage_Loaded;
+            Loaded += BasePage_LoadedAsync;
 
-            this.Unloaded += BasePage_Unloaded;
+            Unloaded += BasePage_UnloadedAsync;
         }
 
         #endregion
@@ -87,29 +86,30 @@ namespace PoE_Launcher
 
         /// <summary>
         /// Once the page is loaded play any required animation
+        /// Kept as async to make sure we're on the UI thread when changing the UI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void BasePage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void BasePage_LoadedAsync(object sender, System.Windows.RoutedEventArgs e)
         {
             // Animate the page in
-            await AnimateIn();
+            await AnimateInAsync();
         }
 
         /// <summary>
         /// Animates this page in
         /// </summary>
         /// <returns></returns>
-        public async Task AnimateIn()
+        public async Task AnimateInAsync()
         {
-            if (this.PageLoadAnimation == PageAnimation.None)
+            if (PageLoadAnimation == PageAnimation.None)
                 return;
 
-            switch (this.PageLoadAnimation)
+            switch (PageLoadAnimation)
             {
                 case PageAnimation.SlideAndFadeInFromTheRight:
                     // Start the animation
-                    await this.SlideAndFadeInFromRight(this.SlideSeconds);
+                    await this.SlideAndFadeInFromRightAsync(SlideSeconds);
 
                     break;
             }
@@ -117,28 +117,29 @@ namespace PoE_Launcher
 
         /// <summary>
         /// Once the page is unloaded play any required animations
+        /// Kept as async to make sure we're on the UI thread when changing the UI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void BasePage_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void BasePage_UnloadedAsync(object sender, System.Windows.RoutedEventArgs e)
         {
-            await AnimateOut();
+            await AnimateOutAsync();
         }
 
         /// <summary>
         /// Animates this page in
         /// </summary>
         /// <returns></returns>
-        public async Task AnimateOut()
+        public async Task AnimateOutAsync()
         {
-            if (this.PageUnloadAnimation == PageAnimation.None)
+            if (PageUnloadAnimation == PageAnimation.None)
                 return;
 
-            switch (this.PageUnloadAnimation)
+            switch (PageUnloadAnimation)
             {
                 case PageAnimation.SlideAndFadeOutToTheLeft:
                     // Start the animation
-                    await this.SlideAndFadeOutToTheLeft(this.SlideSeconds);
+                    await this.SlideAndFadeOutToTheLeftAsync(SlideSeconds);
 
                     break;
             }

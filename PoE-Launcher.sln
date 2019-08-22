@@ -5,6 +5,13 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoE-Launcher", "PoE-Launcher\PoE-Launcher.csproj", "{73437D0E-E550-4C6B-9928-0C81B4E722A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoE-Launcher.Core", "PoE-Launcher.Core\PoE-Launcher.Core.csproj", "{918ACAFD-B9CA-4F71-8B3C-143D16E684EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{92045F37-3A2A-4AE5-8276-BCB6DDB3291B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{73437D0E-E550-4C6B-9928-0C81B4E722A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73437D0E-E550-4C6B-9928-0C81B4E722A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73437D0E-E550-4C6B-9928-0C81B4E722A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{918ACAFD-B9CA-4F71-8B3C-143D16E684EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{918ACAFD-B9CA-4F71-8B3C-143D16E684EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{918ACAFD-B9CA-4F71-8B3C-143D16E684EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{918ACAFD-B9CA-4F71-8B3C-143D16E684EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

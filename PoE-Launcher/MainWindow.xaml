@@ -131,6 +131,7 @@
     <Grid HorizontalAlignment="Center" 
           VerticalAlignment="Center">
         <Frame x:Name="MainFrame" 
-               Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" />
+               Content="{Binding CurrentPage, 
+                    Converter={x:Static local:ApplicationPageValueConverter.Instance}}" />
     </Grid>
 </Window>

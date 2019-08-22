@@ -7,7 +7,7 @@ namespace PoE_Launcher
     /// <summary>
     /// Animation helpers for storyboards
     /// </summary>
-     public static class StoryboardHelpers
+    public static class StoryboardHelpers
     {
         /// <summary>
         /// Adds a slide in from right animation to the storyboard

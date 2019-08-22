@@ -17,7 +17,7 @@ namespace PoE_Launcher
         /// <summary>
         /// A single static instance of this value converter
         /// </summary>
-        private static T mConverter = null;
+        private static T Converter = null;
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace PoE_Launcher
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             // If mConverter == null then...
-            return mConverter ?? (mConverter = new T());
+            return Converter ?? (Converter = new T());
         }
 
         #endregion
