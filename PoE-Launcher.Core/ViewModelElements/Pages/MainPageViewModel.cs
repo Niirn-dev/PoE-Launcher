@@ -58,14 +58,9 @@ namespace PoE_Launcher.Core
         /// <returns></returns>
         private async Task OpenExplorerAsync()
         {
-            await RunCommand(
-                () => IsCommandRunning, 
-                async () => 
-                {
-                    // Placeholder for the action to be performed here
-                    await Task.Delay(500);
-                }
-            );
+            // TO FIX: Doesn't wait for the page closing animation and instantly proceeds to animate new page in
+            // Go to the directory explorer page
+            await Task.Run(() => IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Explorer);
         }
 
         #endregion

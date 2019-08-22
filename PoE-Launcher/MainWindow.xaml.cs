@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using PoE_Launcher.Core;
+using System.Windows;
 
 namespace PoE_Launcher
 {

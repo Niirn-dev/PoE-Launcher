@@ -35,7 +35,7 @@ namespace PoE_Launcher
         /// <summary>
         /// The time it takes for animation to complete
         /// </summary>
-        public float SlideSeconds { get; set; } = 0.8f;
+        public float SlideSeconds { get; set; } = 5.0f;
 
         /// <summary>
         /// View model associated with this page
@@ -102,6 +102,7 @@ namespace PoE_Launcher
         /// <returns></returns>
         public async Task AnimateInAsync()
         {
+            // Make sure we have something to do
             if (PageLoadAnimation == PageAnimation.None)
                 return;
 
@@ -132,6 +133,7 @@ namespace PoE_Launcher
         /// <returns></returns>
         public async Task AnimateOutAsync()
         {
+            // Make sure we have something to do
             if (PageUnloadAnimation == PageAnimation.None)
                 return;
 

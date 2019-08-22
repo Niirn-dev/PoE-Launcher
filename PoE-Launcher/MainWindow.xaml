@@ -128,10 +128,8 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Grid HorizontalAlignment="Center" 
-          VerticalAlignment="Center">
+    <Grid>
         <Frame x:Name="MainFrame" 
-               Content="{Binding CurrentPage, 
-                    Converter={x:Static local:ApplicationPageValueConverter.Instance}}" />
+               Content="{Binding ApplicationVM.CurrentPage, Source={x:Static local:ViewModelLocater.Instance}, Converter={x:Static local:ApplicationPageConverter.Instance}}" />
     </Grid>
 </Window>

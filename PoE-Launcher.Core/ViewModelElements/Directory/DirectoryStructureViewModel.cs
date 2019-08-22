@@ -8,6 +8,12 @@ namespace PoE_Launcher.Core
     /// </summary>
     public class DirectoryStructureViewModel : BaseViewModel
     {
+        #region Singleton
+
+        public static DirectoryStructureViewModel Instance => new DirectoryStructureViewModel();
+
+        #endregion
+
         #region Public properties
         /// <summary>
         /// A list of all directories on the machine

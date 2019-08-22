@@ -107,10 +107,6 @@ namespace PoE_Launcher
         /// </summary>
         public Thickness InnerContentPadding { get; set; } = new Thickness(0);
 
-        /// <summary>
-        /// Current page to be displayed in the main window
-        /// </summary>
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Main;
 
         #endregion
 

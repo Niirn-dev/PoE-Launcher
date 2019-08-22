@@ -8,9 +8,9 @@ namespace PoE_Launcher
     /// <summary>
     /// Converts the <see cref="ApplicationPage"/> to an actual view/page
     /// </summary>
-    public class ApplicationPageValueConverter : BaseValueConverter<ApplicationPageValueConverter>
+    public class ApplicationPageConverter : BaseValueConverter<ApplicationPageConverter>
     {
-        public static ApplicationPageValueConverter Instance = new ApplicationPageValueConverter();
+        public static ApplicationPageConverter Instance => new ApplicationPageConverter();
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

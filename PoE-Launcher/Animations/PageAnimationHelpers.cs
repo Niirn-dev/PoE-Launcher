@@ -49,7 +49,7 @@ namespace PoE_Launcher
             var sb = new Storyboard();
 
             // Add slide to left animation
-            sb.AddSlideToLeft(duration, page.WindowWidth);
+            // sb.AddSlideToLeft(duration, page.ActualWidth);
 
             // Add fade out animation
             sb.AddFadeOut(duration);
