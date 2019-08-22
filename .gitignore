@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/PoE-Launcher/v16
+/PoE-Launcher/obj/Debug
+/PoE-Launcher/bin/Debug

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="PoE_Launcher.MacroListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PoE_Launcher"
+             mc:Ignorable="d" 
+             Height="70"
+             d:DesignHeight="70" d:DesignWidth="700">
+    
+    <Grid d:DataContext="{x:Static local:MacroListItemDesignModel.Instance}" Background="{StaticResource BackgroundDarkBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!-- Enable checkbox -->
+        <Viewbox Grid.Column="0"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center">
+            <CheckBox Margin="4 8"/>
+        </Viewbox>
+        
+        <!-- Macro name and path -->
+        <Border Grid.Column="1" 
+                Padding="6 0 0 0" >
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center">
+                <TextBlock Text="{Binding Name}" 
+                           Style="{StaticResource MacroNameText}"
+                           Foreground="{StaticResource MacroOrangeBrush}"
+                           />
+
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBox Padding="3" Grid.Column="0"
+                             Text="{Binding FullPath}"
+                             Focusable="False"
+                             />
+
+                    <Button Style="{StaticResource ExplorerButton}"
+                            Command="{Binding OpenExplorerCommand}"
+                            Grid.Column="1"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

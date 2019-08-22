@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PoE_Launcher">
+
+    <Color x:Key="BackgroundLight">#efefef</Color>
+    <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
+
+    <Color x:Key="BackgroundVeryLight">#fafafa</Color>
+    <SolidColorBrush x:Key="BackgroundVeryLightBrush" Color="{StaticResource BackgroundVeryLight}" />
+
+    <Color x:Key="BackgroundDark">#b3b3b3</Color>
+    <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDark}" />
+
+    <Color x:Key="ForegroundMain">#686868</Color>
+    <SolidColorBrush x:Key="ForegroundMainBrush" Color="{StaticResource ForegroundMain}" />
+
+    <Color x:Key="ForegroundVeryDark">#000</Color>
+    <SolidColorBrush x:Key="ForegroundVeryDarkBrush" Color="{StaticResource ForegroundVeryDark}" />
+
+    <Color x:Key="ForegroundLight">#fff</Color>
+    <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
+
+    <Color x:Key="GlowYellow">#fafacb</Color>
+    <SolidColorBrush x:Key="GlowYellowBrush" Color="{StaticResource GlowYellow}" />
+
+    <Color x:Key="MacroOrange">#ffa500</Color>
+    <SolidColorBrush x:Key="MacroOrangeBrush" Color="{StaticResource MacroOrange}" />
+</ResourceDictionary>
