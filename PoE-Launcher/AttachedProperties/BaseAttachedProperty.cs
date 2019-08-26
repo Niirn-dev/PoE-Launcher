@@ -18,6 +18,11 @@ namespace PoE_Launcher
         /// </summary>
         public event Action<DependencyObject, DependencyPropertyChangedEventArgs> ValueChanged = (sender, e) => { };
 
+        /// <summary>
+        /// Fired when the value is updated, even if the value stays the same
+        /// </summary>
+        public event Action<DependencyObject, object> ValueUpdated = (sender, value) => { };
+
         #endregion
 
         #region Public properties
@@ -39,9 +44,11 @@ namespace PoE_Launcher
             typeof(Property), 
             typeof(BaseAttachedProperty<Parent, Property>),
             new UIPropertyMetadata(
+                default(Property),
                 new PropertyChangedCallback(
                     OnValuePropertyChanged
-                )
+                ),
+                new CoerceValueCallback(OnValuePropertyUpdated)
             )
         );
 
@@ -57,6 +64,24 @@ namespace PoE_Launcher
 
             // Call event listeners
             Instance.ValueChanged(d, e);
+        }
+
+        /// <summary>
+        /// The callback event when the <see cref="ValuePropety"/> is updated
+        /// This event is fired even if the value was changed in the update process
+        /// </summary>
+        /// <param name="d">The UI element that had it's property changed</param>
+        /// <param name="e">The argument for the event</param>
+        private static object OnValuePropertyUpdated(DependencyObject d, object value)
+        {
+            // Call the parent function
+            Instance.OnValueUpdated(d, value);
+
+            // Call event listeners
+            Instance.ValueUpdated(d, value);
+
+            // Return the value
+            return value;
         }
 
         /// <summary>
@@ -82,7 +107,14 @@ namespace PoE_Launcher
         /// </summary>
         /// <param name="d">The UI element that this property was changed for</param>
         /// <param name="e">The arguments for this event</param>
-        private void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {  }
+        public virtual void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {  }
+
+        /// <summary>
+        /// The method that is called when any attached property of this type is updated, even if the value stays the same
+        /// </summary>
+        /// <param name="d">The UI element that this property was updated for</param>
+        /// <param name="value">Value that was updated</param>
+        public virtual void OnValueUpdated(DependencyObject d, object value) { }
 
         #endregion
     }

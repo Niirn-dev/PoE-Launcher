@@ -8,21 +8,22 @@ namespace PoE_Launcher
     /// <summary>
     /// Helpers to animate pages
     /// </summary>
-    public static class PageAnimationHelpers
+    public static class PageAnimations
     {
         /// <summary>
         /// Slide from the right and fade in animation
         /// </summary>
         /// <param name="page">Page to animate</param>
         /// <param name="duration">Animation duration in seconds</param>
+        /// <param name="keepWidth">True to keep the element's width the same after the animation, false to  reduce it to 0</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeInFromRightAsync(this Page page, float duration)
+        public static async Task SlideAndFadeInFromRightAsync(this Page page, float duration, bool keepWidth = true)
         {
             // Create the storyboard
             var sb = new Storyboard();
 
             // Add slide from right animation
-            sb.AddSlideFromRight(duration, page.WindowWidth);
+            sb.AddSlideFromRight(duration, page.WindowWidth, keepWidth: keepWidth);
 
             // Add fade in animation
             sb.AddFadeIn(duration);
@@ -42,14 +43,15 @@ namespace PoE_Launcher
         /// </summary>
         /// <param name="page">Page to animate</param>
         /// <param name="duration">Animation duration in seconds</param>
+        /// <param name="keepWidth">True to keep the element's width the same after the animation, false to  reduce it to 0</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeOutToTheLeftAsync(this Page page, float duration)
+        public static async Task SlideAndFadeOutToTheLeftAsync(this Page page, float duration, bool keepWidth = true)
         {
             // Create the storyboard
             var sb = new Storyboard();
 
             // Add slide to left animation
-            // sb.AddSlideToLeft(duration, page.ActualWidth);
+            sb.AddSlideToLeft(duration, page.ActualWidth, keepWidth: keepWidth);
 
             // Add fade out animation
             sb.AddFadeOut(duration);

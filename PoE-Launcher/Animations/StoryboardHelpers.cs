@@ -14,15 +14,16 @@ namespace PoE_Launcher
         /// </summary>
         /// <param name="storyboard">The storyboard to add the animation to</param>
         /// <param name="duration">The time the animation will take in seconds</param>
-        /// <param name="offset"></param>
+        /// <param name="offset">The distance to move the element to</param>
         /// <param name="decelerationRatio"></param>
-        public static void AddSlideFromRight(this Storyboard storyboard, float duration, double offset, float decelerationRatio = 0.9f)
+        /// <param name="keepWidth">True to keep the element's width the same after the animation, false to  reduce it to 0</param>
+        public static void AddSlideFromRight(this Storyboard storyboard, float duration, double offset, float decelerationRatio = 0.9f, bool keepWidth = true)
         {
             // Create the margin for the slide animation
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(duration)),
-                From = new Thickness(offset, 0, -offset, 0),
+                From = new Thickness(keepWidth ? offset : 0, 0, -offset, 0),
                 To = new Thickness(0),
                 DecelerationRatio = decelerationRatio
             };
@@ -39,16 +40,17 @@ namespace PoE_Launcher
         /// </summary>
         /// <param name="storyboard">The storyboard to add the animation to</param>
         /// <param name="duration">The time the animation will take in seconds</param>
-        /// <param name="offset"></param>
+        /// <param name="offset">The distance to move the element to</param>
         /// <param name="decelerationRatio"></param>
-        public static void AddSlideToLeft(this Storyboard storyboard, float duration, double offset, float decelerationRatio = 0.9f)
+        /// <param name="keepWidth">True to keep the element's width the same after the animation, false to  reduce it to 0</param>
+        public static void AddSlideToLeft(this Storyboard storyboard, float duration, double offset, float decelerationRatio = 0.9f, bool keepWidth = true)
         {
             // Create the margin for the slide animation
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(duration)),
                 From = new Thickness(0),
-                To = new Thickness(-offset, 0, offset, 0),
+                To = new Thickness(-offset, 0, keepWidth ? offset : 0, 0),
                 DecelerationRatio = decelerationRatio
             };
 
