@@ -35,7 +35,7 @@ namespace PoE_Launcher
         /// <summary>
         /// The time it takes for animation to complete
         /// </summary>
-        public float SlideSeconds { get; set; } = 5.0f;
+        public float SlideSeconds { get; set; } = 0.8f;
 
         /// <summary>
         /// View model associated with this page

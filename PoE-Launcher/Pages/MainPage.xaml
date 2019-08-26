@@ -6,21 +6,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:PoE_Launcher"
     xmlns:core="clr-namespace:PoE_Launcher.Core;assembly=PoE-Launcher.Core"
-    mc:Ignorable="d" 
-    d:DesignHeight="380" d:DesignWidth="700"
+    mc:Ignorable="d"
+    d:DesignHeight="420" d:DesignWidth="700"
     Title="MainPage">
     
     <Border Padding="10" Background="{StaticResource BackgroundLightBrush}">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Background="{StaticResource BackgroundVeryLightBrush}">
+            <Grid Background="{StaticResource BackgroundVeryLightBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
                 <!-- List of macros -->
-                <local:MacroListControl />
+                <local:MacroListControl Grid.Row="0"/>
 
                 <!-- Action buttons -->
-                <Grid Margin="0 30 0 0">
+                <Grid Margin="0 0 0 0" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" MaxWidth="100" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
@@ -37,7 +43,7 @@
                             Width="190"
                             Grid.Column="3"/>
                 </Grid>
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Border>
 </local:BasePage>
