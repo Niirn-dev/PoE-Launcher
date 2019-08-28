@@ -6,21 +6,11 @@ using System.Windows.Controls;
 namespace PoE_Launcher
 {
     /// <summary>
-    /// Base page for all pager to inherit base functionality
+    /// Non-generic base page to inherit base functionality
     /// </summary>
-    public class BasePage<VM> : Page
-        where VM : BaseViewModel, new()
+    public class BasePage : Page
     {
-        #region Private members
-
-        /// <summary>
-        /// View model associated with this page
-        /// </summary>
-        private VM mViewModel;
-
-        #endregion
-
-        #region Public properties
+        #region Public Properties
 
         /// <summary>
         /// The animation to play when the page is loaded
@@ -35,28 +25,12 @@ namespace PoE_Launcher
         /// <summary>
         /// The time it takes for animation to complete
         /// </summary>
-        public float SlideSeconds { get; set; } = 0.8f;
+        public float SlideSeconds { get; set; } = 0.5f;
 
         /// <summary>
-        /// View model associated with this page
+        /// The flag to indicate if this page should animate out on load
         /// </summary>
-        public VM ViewModel
-        {
-            get => mViewModel;
-
-            set
-            {
-                // If nothing has changed, return
-                if (value == mViewModel)
-                    return;
-
-                // Update the view model
-                mViewModel = value;
-
-                // Update data context for the page
-                DataContext = mViewModel;
-            }
-        }
+        public bool ShouldAnimateOut { get; set; } = false;
 
         #endregion
 
@@ -67,8 +41,6 @@ namespace PoE_Launcher
         /// </summary>
         public BasePage()
         {
-            ViewModel = new VM();
-
             // If we are animating...
             if (PageLoadAnimation != PageAnimation.None)
                 // Hide to begin with
@@ -76,8 +48,6 @@ namespace PoE_Launcher
 
             // Listen out for the page loading
             Loaded += BasePage_LoadedAsync;
-
-            Unloaded += BasePage_UnloadedAsync;
         }
 
         #endregion
@@ -92,8 +62,14 @@ namespace PoE_Launcher
         /// <param name="e"></param>
         private async void BasePage_LoadedAsync(object sender, System.Windows.RoutedEventArgs e)
         {
-            // Animate the page in
-            await AnimateInAsync();
+            // If we are set up to animate out on load...
+            if (ShouldAnimateOut)
+                // Animate out
+                await AnimateOutAsync();
+            // Otherwise...
+            else
+                // Animate the page in
+                await AnimateInAsync();
         }
 
         /// <summary>
@@ -145,6 +121,61 @@ namespace PoE_Launcher
 
                     break;
             }
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Base page with added ViewModelSupport
+    /// </summary>
+    public class BasePage<VM> : BasePage
+        where VM : BaseViewModel, new()
+    {
+        #region Private members
+
+        /// <summary>
+        /// View model associated with this page
+        /// </summary>
+        private VM mViewModel;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// View model associated with this page
+        /// </summary>
+        public VM ViewModel
+        {
+            get => mViewModel;
+
+            set
+            {
+                // If nothing has changed, return
+                if (value == mViewModel)
+                    return;
+
+                // Update the view model
+                mViewModel = value;
+
+                // Update data context for the page
+                DataContext = mViewModel;
+            }
+        }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public BasePage()
+            : base()
+        {
+            // Create a default view model
+            ViewModel = new VM();
         }
 
         #endregion

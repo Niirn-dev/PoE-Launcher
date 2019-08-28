@@ -31,7 +31,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Command="{Binding OpenExplorerCommand}"
+                    <Button Command="{Binding OpenExplorerPageCommand}"
                             Content="Select PoE executable" 
                             local:IsBusyProperty.Value="{Binding IsCommandRunning}"
                             Width="170"

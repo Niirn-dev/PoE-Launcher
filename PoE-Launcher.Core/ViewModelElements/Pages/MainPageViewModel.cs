@@ -33,7 +33,7 @@ namespace PoE_Launcher.Core
         /// <summary>
         /// The command to show the system menu of the window
         /// </summary>
-        public ICommand OpenExplorerCommand { get; set; }
+        public ICommand OpenExplorerPageCommand { get; set; }
 
         #endregion
 
@@ -45,22 +45,21 @@ namespace PoE_Launcher.Core
         public MainPageViewModel()
         {
             // Create commands
-            OpenExplorerCommand = new RelayCommand(async () => await OpenExplorerAsync());
+            OpenExplorerPageCommand = new RelayCommand(() => OpenExplorerPage());
         }
 
         #endregion
 
-        #region Tasks
+        #region Command Implementations
 
         /// <summary>
         /// Opens the file explorer to find the required file
         /// </summary>
         /// <returns></returns>
-        private async Task OpenExplorerAsync()
+        private void OpenExplorerPage()
         {
-            // TO FIX: Doesn't wait for the page closing animation and instantly proceeds to animate new page in
             // Go to the directory explorer page
-            await Task.Run(() => IoC.Get<ApplicationViewModel>().CurrentPage = ApplicationPage.Explorer);
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Explorer);
         }
 
         #endregion

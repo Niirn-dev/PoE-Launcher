@@ -38,7 +38,7 @@ namespace PoE_Launcher.Core
         private static void BindModels()
         {
             // Binds to a single instance of the ApplicationViewModel
-            Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel { CurrentPage = ApplicationPage.Main });
+            Kernel.Bind<ApplicationViewModel>().ToConstant(new ApplicationViewModel());
         }
 
         #endregion

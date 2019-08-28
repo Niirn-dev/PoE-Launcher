@@ -76,6 +76,7 @@
     <Compile Include="Animations\StoryboardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\FrameworkElementAnimationAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\NoFrameNavigationHistory.cs" />
     <Compile Include="AttachedProperties\IsBusyProperty.cs" />
     <Compile Include="Controls\Directory\DirectoryStructureControl.xaml.cs">
       <DependentUpon>DirectoryStructureControl.xaml</DependentUpon>
@@ -85,6 +86,9 @@
     </Compile>
     <Compile Include="Controls\Macros\MacroListItemControl.xaml.cs">
       <DependentUpon>MacroListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PageHost.xaml.cs">
+      <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\FileExplorerPage.xaml.cs">
@@ -109,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Macros\MacroListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PageHost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

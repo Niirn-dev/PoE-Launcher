@@ -55,30 +55,30 @@ namespace PoE_Launcher
         /// <summary>
         /// The callback event when the <see cref="ValuePropety"/> is changed
         /// </summary>
-        /// <param name="d">The UI element that had it's property changed</param>
+        /// <param name="sender">The UI element that had it's property changed</param>
         /// <param name="e">The argument for the event</param>
-        private static void OnValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             // Call the parent function
-            Instance.OnValueChanged(d, e);
+            Instance.OnValueChanged(sender, e);
 
             // Call event listeners
-            Instance.ValueChanged(d, e);
+            Instance.ValueChanged(sender, e);
         }
 
         /// <summary>
         /// The callback event when the <see cref="ValuePropety"/> is updated
         /// This event is fired even if the value was changed in the update process
         /// </summary>
-        /// <param name="d">The UI element that had it's property changed</param>
+        /// <param name="sender">The UI element that had it's property changed</param>
         /// <param name="e">The argument for the event</param>
-        private static object OnValuePropertyUpdated(DependencyObject d, object value)
+        private static object OnValuePropertyUpdated(DependencyObject sender, object value)
         {
             // Call the parent function
-            Instance.OnValueUpdated(d, value);
+            Instance.OnValueUpdated(sender, value);
 
             // Call event listeners
-            Instance.ValueUpdated(d, value);
+            Instance.ValueUpdated(sender, value);
 
             // Return the value
             return value;
@@ -87,16 +87,16 @@ namespace PoE_Launcher
         /// <summary>
         /// Gets the attached property
         /// </summary>
-        /// <param name="d">The UI element to get the property from</param>
+        /// <param name="sender">The UI element to get the property from</param>
         /// <returns></returns>
-        public static Property GetValue(DependencyObject d) => (Property)d.GetValue(ValuePropety);
+        public static Property GetValue(DependencyObject sender) => (Property)sender.GetValue(ValuePropety);
 
         /// <summary>
         /// Sets the attached property
         /// </summary>
-        /// <param name="d">The UI element that this property was changed for</param>
+        /// <param name="sender">The UI element that this property was changed for</param>
         /// <param name="value">The value to set the property to</param>
-        public static void SetValue(DependencyObject d, Property value) => d.SetValue(ValuePropety, value);
+        public static void SetValue(DependencyObject sender, Property value) => sender.SetValue(ValuePropety, value);
 
         #endregion
 

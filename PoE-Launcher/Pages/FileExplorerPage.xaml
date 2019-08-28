@@ -10,6 +10,17 @@
       Title="FileExplorerPage">
 
     <Grid>
-        <local:DirectoryStructureControl />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- The directory explorer -->
+        <local:DirectoryStructureControl Grid.Row="0" />
+
+        <!-- Control buttons -->
+        <Button Grid.Row="1"
+                Content="Return to Main Page"
+                Command="{Binding OpenMainPageCommand}"/>
     </Grid>
 </local:BasePage>

@@ -9,6 +9,8 @@ namespace PoE_Launcher
     /// </summary>
     public static class StoryboardHelpers
     {
+        #region Slide effects
+
         /// <summary>
         /// Adds a slide in from right animation to the storyboard
         /// </summary>
@@ -24,6 +26,32 @@ namespace PoE_Launcher
             {
                 Duration = new Duration(TimeSpan.FromSeconds(duration)),
                 From = new Thickness(keepWidth ? offset : 0, 0, -offset, 0),
+                To = new Thickness(0),
+                DecelerationRatio = decelerationRatio
+            };
+
+            // Set the target property name
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+
+            // Add this to the story board
+            storyboard.Children.Add(animation);
+        }
+
+        /// <summary>
+        /// Adds a slide in from left animation to the storyboard
+        /// </summary>
+        /// <param name="storyboard">The storyboard to add the animation to</param>
+        /// <param name="duration">The time the animation will take in seconds</param>
+        /// <param name="offset">The distance to move the element to</param>
+        /// <param name="decelerationRatio"></param>
+        /// <param name="keepWidth">True to keep the element's width the same after the animation, false to  reduce it to 0</param>
+        public static void AddSlideFromLeft(this Storyboard storyboard, float duration, double offset, float decelerationRatio = 0.9f, bool keepWidth = true)
+        {
+            // Create the margin for the slide animation
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(duration)),
+                From = new Thickness(-offset, 0, keepWidth ? offset : 0, 0),
                 To = new Thickness(0),
                 DecelerationRatio = decelerationRatio
             };
@@ -60,6 +88,36 @@ namespace PoE_Launcher
             // Add this to the story board
             storyboard.Children.Add(animation);
         }
+
+        /// <summary>
+        /// Adds a slide to right animation to the storyboard
+        /// </summary>
+        /// <param name="storyboard">The storyboard to add the animation to</param>
+        /// <param name="duration">The time the animation will take in seconds</param>
+        /// <param name="offset">The distance to move the element to</param>
+        /// <param name="decelerationRatio"></param>
+        /// <param name="keepWidth">True to keep the element's width the same after the animation, false to  reduce it to 0</param>
+        public static void AddSlideToRight(this Storyboard storyboard, float duration, double offset, float decelerationRatio = 0.9f, bool keepWidth = true)
+        {
+            // Create the margin for the slide animation
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(duration)),
+                From = new Thickness(0),
+                To = new Thickness(keepWidth ? offset : 0, 0, -offset, 0),
+                DecelerationRatio = decelerationRatio
+            };
+
+            // Set the target property name
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+
+            // Add this to the story board
+            storyboard.Children.Add(animation);
+        }
+
+        #endregion
+
+        #region Fade effects
 
         /// <summary>
         /// Adds a fade in animation to the storyboard
@@ -104,5 +162,7 @@ namespace PoE_Launcher
             // Add this to the story board
             storyboard.Children.Add(animation);
         }
+
+        #endregion
     }
 }

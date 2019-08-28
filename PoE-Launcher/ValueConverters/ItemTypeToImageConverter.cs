@@ -29,7 +29,9 @@ namespace PoE_Launcher
                     break;
             }
 
-            return new BitmapImage(new Uri($"pack://application:,,,/{image}"));
+            // return new BitmapImage(new Uri($"pack://application:,,,/{image}"));
+            // Remade Universal link to a relative one to fix the WPF designer issue
+            return new BitmapImage(new Uri($"/{image}", UriKind.Relative));
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

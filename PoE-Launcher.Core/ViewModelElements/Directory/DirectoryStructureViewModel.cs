@@ -4,7 +4,7 @@ using System.Linq;
 namespace PoE_Launcher.Core
 {
     /// <summary>
-    /// The view model for the application main DIrectory view
+    /// The view model for the application main Directory view
     /// </summary>
     public class DirectoryStructureViewModel : BaseViewModel
     {
@@ -15,6 +15,7 @@ namespace PoE_Launcher.Core
         #endregion
 
         #region Public properties
+
         /// <summary>
         /// A list of all directories on the machine
         /// </summary>
@@ -30,9 +31,9 @@ namespace PoE_Launcher.Core
         public DirectoryStructureViewModel()
         {
             // Create new view models for each drive
-            this.Items = new ObservableCollection<DirectoryItemViewModel>(
-                    DirectoryStructure.GetLogicalDrives().Select(drive => new DirectoryItemViewModel(drive.FullPath, DirectoryItemType.Drive))
-                );
+            Items = new ObservableCollection<DirectoryItemViewModel>(
+                DirectoryStructure.GetLogicalDrives().Select(drive => new DirectoryItemViewModel(drive.FullPath, DirectoryItemType.Drive))
+            );
         }
 
         #endregion
