@@ -9,7 +9,7 @@ namespace PoE_Launcher
     /// <typeparam name="Parent">The parent class to be attached property</typeparam>
     /// <typeparam name="Property">The type of the attached property</typeparam>
     public abstract class BaseAttachedProperty<Parent, Property>
-        where Parent: BaseAttachedProperty<Parent, Property>, new()
+        where Parent: new()
     {
         #region Public events
 
@@ -34,7 +34,7 @@ namespace PoE_Launcher
 
         #endregion
 
-        #region Attached property definitions
+        #region Attached Property Definitions
 
         /// <summary>
         /// The attached property for this class
@@ -60,10 +60,10 @@ namespace PoE_Launcher
         private static void OnValuePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             // Call the parent function
-            Instance.OnValueChanged(sender, e);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueChanged(sender, e);
 
             // Call event listeners
-            Instance.ValueChanged(sender, e);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.ValueChanged(sender, e);
         }
 
         /// <summary>
@@ -75,10 +75,10 @@ namespace PoE_Launcher
         private static object OnValuePropertyUpdated(DependencyObject sender, object value)
         {
             // Call the parent function
-            Instance.OnValueUpdated(sender, value);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueUpdated(sender, value);
 
             // Call event listeners
-            Instance.ValueUpdated(sender, value);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.ValueUpdated(sender, value);
 
             // Return the value
             return value;

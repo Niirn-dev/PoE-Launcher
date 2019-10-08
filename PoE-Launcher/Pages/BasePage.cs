@@ -1,4 +1,5 @@
 ﻿using PoE_Launcher.Core;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,8 +8,9 @@ namespace PoE_Launcher
 {
     /// <summary>
     /// Non-generic base page to inherit base functionality
+    /// Remade as user control to show pages during design time
     /// </summary>
-    public class BasePage : Page
+    public class BasePage : UserControl
     {
         #region Public Properties
 
@@ -41,6 +43,10 @@ namespace PoE_Launcher
         /// </summary>
         public BasePage()
         {
+            // Don't bother animating in design time
+            if (DesignerProperties.GetIsInDesignMode(this))
+                return;
+
             // If we are animating...
             if (PageLoadAnimation != PageAnimation.None)
                 // Hide to begin with
@@ -60,7 +66,7 @@ namespace PoE_Launcher
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void BasePage_LoadedAsync(object sender, System.Windows.RoutedEventArgs e)
+        private async void BasePage_LoadedAsync(object sender, RoutedEventArgs e)
         {
             // If we are set up to animate out on load...
             if (ShouldAnimateOut)
@@ -86,7 +92,7 @@ namespace PoE_Launcher
             {
                 case PageAnimation.SlideAndFadeInFromTheRight:
                     // Start the animation
-                    await this.SlideAndFadeInFromRightAsync(SlideSeconds);
+                    await this.SlideAndFadeInFromRightAsync(SlideSeconds, width: (int)Application.Current.MainWindow.ActualWidth);
 
                     break;
             }
@@ -98,7 +104,7 @@ namespace PoE_Launcher
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void BasePage_UnloadedAsync(object sender, System.Windows.RoutedEventArgs e)
+        private async void BasePage_UnloadedAsync(object sender, RoutedEventArgs e)
         {
             await AnimateOutAsync();
         }

@@ -23,7 +23,7 @@ namespace PoE_Launcher
             var sb = new Storyboard();
 
             // Add slide from right animation
-            sb.AddSlideFromRight(duration, page.WindowWidth, keepWidth: keepWidth);
+            sb.AddSlideFromRight(duration, page.ActualWidth, keepWidth: keepWidth);
 
             // Add fade in animation
             sb.AddFadeIn(duration);

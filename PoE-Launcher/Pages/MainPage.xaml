@@ -7,8 +7,7 @@
     xmlns:local="clr-namespace:PoE_Launcher"
     xmlns:core="clr-namespace:PoE_Launcher.Core;assembly=PoE-Launcher.Core"
     mc:Ignorable="d"
-    d:DesignHeight="420" d:DesignWidth="700"
-    Title="MainPage">
+    d:DesignHeight="420" d:DesignWidth="700">
     
     <Border Padding="10" Background="{StaticResource BackgroundLightBrush}">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">

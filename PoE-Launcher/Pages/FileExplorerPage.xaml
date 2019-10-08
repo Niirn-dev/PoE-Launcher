@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:PoE_Launcher"
       xmlns:core="clr-namespace:PoE_Launcher.Core;assembly=PoE-Launcher.Core"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="FileExplorerPage">
+      d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -130,9 +130,10 @@
     </WindowChrome.WindowChrome>
 
     <Grid>
-        <local:PageHost x:Name="MainFrame" 
-               CurrentPage="{Binding ApplicationVM.CurrentPage, 
-                    Source={x:Static local:ViewModelLocater.Instance}, 
-                    Converter={x:Static local:ApplicationPageConverter.Instance}}"/>
+        <local:PageHost d:DataContext=""
+                        DataContext="{Binding ApplicationVM.CurrentPage, 
+                            Source={x:Static local:ViewModelLocater.Instance}, 
+                            Converter={local:ApplicationPageConverter}}"
+                        CurrentPage="{Binding}"/>
     </Grid>
 </Window>

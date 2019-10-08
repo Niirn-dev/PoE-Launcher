@@ -15,7 +15,7 @@ namespace PoE_Launcher
     {
         public static ApplicationPageConverter Instance => new ApplicationPageConverter();
 
-        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType = null, object parameter = null, CultureInfo culture = null)
         {
             // Find the appropriate page
             switch ((ApplicationPage)value)

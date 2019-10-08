@@ -1,7 +1,10 @@
-﻿using System;
+﻿using PoE_Launcher.Core;
+using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace PoE_Launcher
 {
@@ -37,12 +40,22 @@ namespace PoE_Launcher
         public PageHost()
         {
             InitializeComponent();
+
+            // If we are in designer mode, show the current page
+            // as the dependency property does not fire
+            if (DesignerProperties.GetIsInDesignMode(this))
+                NewPage.Content = (BasePage)ApplicationPageConverter.Instance.Convert(IoC.Get<ApplicationViewModel>().CurrentPage);
         }
 
         #endregion
 
         #region Property Changed events
 
+        /// <summary>
+        /// Called when the <see cref="CurrentPage"/> property changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private static void CurrentPagePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             // Get the frames
@@ -61,9 +74,17 @@ namespace PoE_Launcher
             // Animate out previous page when the Loaded event fires
             // right after this call due to moving frames
             if (oldPageContent is BasePage oldPage)
+            {
                 // Without awaiting for the animation to finish
                 oldPage.ShouldAnimateOut = true;
 
+                // Once it is done, remove the old page
+                Task.Delay((int)oldPage.SlideSeconds * 1000).ContinueWith((t) =>
+                {
+                    // Jump back to the UI thread and remove the old page
+                    Application.Current.Dispatcher.Invoke(() => oldPageFrame.Content = null);
+                });
+            }
             // Set the new page content
             newPageFrame.Content = e.NewValue;
         }
